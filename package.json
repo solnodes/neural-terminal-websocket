@@ -2,9 +2,9 @@
   "name": "neural-terminal-websocket",
   "version": "1.0.0",
   "description": "WebSocket server for Neural Terminal real-time logs",
-  "main": "render-server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node render-server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "ws": "^8.14.2"
@@ -22,3 +22,4 @@
   "author": "Neural Team",
   "license": "MIT"
 }
+
