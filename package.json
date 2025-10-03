@@ -1,0 +1,24 @@
+{
+  "name": "neural-terminal-websocket",
+  "version": "1.0.0",
+  "description": "WebSocket server for Neural Terminal real-time logs",
+  "main": "render-server.js",
+  "scripts": {
+    "start": "node render-server.js"
+  },
+  "dependencies": {
+    "ws": "^8.14.2"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": [
+    "websocket",
+    "neural",
+    "terminal",
+    "solana",
+    "logs"
+  ],
+  "author": "Neural Team",
+  "license": "MIT"
+}
