@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const http = require('http');
 
-console.log('Starting Neural Terminal & Chat server...');
+console.log('🚀 Starting Neural Terminal & Chat server - CLEAN LAUNCH...');
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
@@ -30,7 +30,7 @@ wss.on('connection', (ws) => {
   clients.add(ws);
   
   ws.send(JSON.stringify({
-    message: 'Connected to Neural Terminal',
+    message: 'Connected to Neural Terminal - Live System',
     type: 'success',
     timestamp: new Date().toISOString()
   }));
@@ -100,12 +100,12 @@ wss.on('connection', (ws) => {
 
 server.on('request', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(`<h1>Neural Server</h1><p>Status: Running</p><p>Clients: ${clients.size}</p><p>Messages: ${messageHistory.length}</p>`);
+  res.end(`<h1>Neural Server - LIVE</h1><p>Status: Running</p><p>Clients: ${clients.size}</p><p>Messages: ${messageHistory.length}</p><p>Ready for live launch!</p>`);
 });
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Neural server running on port ${PORT} - READY FOR LIVE LAUNCH!`);
 });
 
 module.exports = { broadcast };
