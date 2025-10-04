@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const http = require('http');
 
-console.log('Starting Neural Terminal server...');
+console.log('Starting Neural Terminal & Chat server...');
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
@@ -35,6 +35,7 @@ wss.on('connection', (ws) => {
     timestamp: new Date().toISOString()
   }));
   
+  // Send all message history after connection
   setTimeout(() => {
     messageHistory.forEach(msg => {
       if (ws.readyState === WebSocket.OPEN) {
@@ -63,6 +64,23 @@ wss.on('connection', (ws) => {
           color: msg.color,
           messageType: msg.messageType
         });
+      } else if (msg.action === 'request_history') {
+        // Send terminal log history
+        messageHistory.forEach(historyMsg => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify(historyMsg));
+          }
+        });
+      } else if (msg.action === 'request_chat_history') {
+        // Send chat history - filter for chat messages only
+        const chatMessages = messageHistory.filter(m => m.type === 'chat_message' || m.type === 'admin_message');
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({
+            action: 'chat_history',
+            messages: chatMessages,
+            timestamp: new Date().toISOString()
+          }));
+        }
       }
     } catch (error) {
       console.error('Error:', error.message);
